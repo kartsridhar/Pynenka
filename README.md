@@ -8,7 +8,7 @@ The twitter app keys are removed due to security reasons.
 
 ## How does it work
 To test pynenka simply open twitter and [@pynenka](https://twitter.com/pynenka) followed by the hashtag #Golazo and never miss out on any moment!
-Currently, I am not hosting the program anywhere and hence won't work unless manually run. Check the demo below to see how Pynenka works!
+Pynenka sleeps during the day and activates in the evening so if you mention it before, you will get your reply only when its awake
 
 ### Demo
 ![](pynenka-demo.gif)
@@ -21,6 +21,5 @@ Currently, I am not hosting the program anywhere and hence won't work unless man
 
 ### Update
 Pynenka now also tweets the game start time/minutes played
+App deployed on heroku
 
-# NOT DEPLOYED YET
-Please clone the repository to test the bot. 
