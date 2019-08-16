@@ -1,6 +1,6 @@
 # Pynenka
 
-Pynenka is a simple low level twitter bot that replies with the football score of nearest/current game
+Pynenka is a simple low level twitter bot that replies with the football score of the 3 nearest/current games.
 
 The live scores are scraped from [livescores.com](https://www.livescores.com/).
 
@@ -15,6 +15,9 @@ To test pynenka simply open twitter and [@pynenka](https://twitter.com/pynenka) 
 1. Add Goalscorers and minutes and make it more responsive.
 2. Like and Comment on selected #Football posts
 3. Return live score of requested games
+
+### Update
+Pynenka now also tweets the game start time/minutes played
 
 # NOT DEPLOYED YET
 Please clone the repository to test the bot. 

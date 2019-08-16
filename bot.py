@@ -42,7 +42,7 @@ def reply():
         lastSeenId = m.id
         store_last_seen_id(lastSeenId, FILE_NAME)
         if '#golazo' in m.full_text.lower():
-            print("found mention", flush=True)
+
             scrape_url = "https://www.livescores.com/"
             print("Scraping match details...")
 
@@ -50,26 +50,30 @@ def reply():
                 livescores = requests.get(scrape_url)
             except Exception as e:
                 print(f'Error occured as {e}')
-            
+
             parsed = BeautifulSoup(livescores.text, 'html.parser')
 
             scores = []
             matches = []
+            timings = []
 
             for element in parsed.find_all("div", "row-gray"):
                 home = ' '.join(element.find("div", "tright").get_text().strip().split(" "))
                 away = ' '.join(element.find(attrs = {"class": "ply name"}).get_text().strip().split(" "))
+                match_time = ' '.join(element.find("div", "min").get_text().strip().split(" "))
 
                 home_score = element.find("div", "sco").get_text().split("-")[0].strip()
                 away_score = element.find("div", "sco").get_text().split("-")[1].strip()
 
                 matches.append(f'{home} vs {away}')
                 scores.append(f'{home_score} - {away_score}')
-                game1 = matches[0] + '\n' + "Score: " + scores[0] + '\n' + '\n'
-                # game2 = matches[1] + '\n' + "Score: " + scores[1] + '\n' + '\n'
-                # game3 = matches[2] + '\n' + "Score: " + scores[2] + '\n'
+                timings.append([f'{match_time}'])
 
-                tweet = game1 + "#PynenkaLiveScores #Football #TheBeautifulGame"
+            game1 = matches[0] + '\n' + "Game Time: " + timings[0][0] + '\n' + "Score: " + scores[0] + '\n' + '\n'
+            game2 = matches[1] + '\n' + "Game Time: " + timings[1][0] + '\n' + "Score: " + scores[1] + '\n' + '\n'
+            game3 = matches[2] + '\n' + "Game Time: " + timings[2][0] + '\n' + "Score: " + scores[2] + '\n'
+
+            tweet = game1 + game2 + game3 + "#PynenkaLiveScores #Football #TheBeautifulGame"
             api.update_status('@' + m.user.screen_name + " " + tweet, m.id)
         print('replied')
     print('exit mentions')
